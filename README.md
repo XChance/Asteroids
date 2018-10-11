@@ -4,4 +4,5 @@ Includes different sprites, sounds, and one of my first 'good' game project stru
 
 Controls: 
 Movement - Arrow Keys
+
 Shoot - Spacebar

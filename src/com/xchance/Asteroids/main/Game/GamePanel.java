@@ -2,11 +2,13 @@ package com.xchance.Asteroids.main.Game;
 
 import com.xchance.Asteroids.main.Managers.GameStateManager;
 import com.xchance.Asteroids.main.Managers.Keys;
+import com.xchance.Asteroids.main.Managers.MouseHelper;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseListener;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,6 +22,9 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     private Thread thread;
     private final int FPS = 30;
     private final int TARGET_TIME = 1000 / FPS;
+
+    private boolean isMenu;
+    private boolean isGameOver;
 
     private GameStateManager gsm;
 
@@ -36,6 +41,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     public void init(){
         running = true;
         gsm = new GameStateManager();
+        isMenu = false;
+        isGameOver = false;
     }
 
     @Override
@@ -71,8 +78,29 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     }
 
     public void update(){
+        MouseHelper.getPos(getLocationOnScreen());
         gsm.update();
         Keys.update();
+        checkMouseListener();
+    }
+
+    public void checkMouseListener(){
+        if(gsm.getCurrentState() == GameStateManager.MENU && !isMenu) {
+            addMouseListener((MouseListener) gsm.currentGameState(GameStateManager.MENU));
+            isMenu = true;
+        }
+        if(gsm.getCurrentState() == GameStateManager.GAMEOVER && !isGameOver){
+            addMouseListener((MouseListener) gsm.currentGameState(GameStateManager.GAMEOVER));
+            System.out.println("  ff");
+            isGameOver = true;
+        }
+
+        if(gsm.getCurrentState() != GameStateManager.MENU){
+            isMenu = false;
+        }
+        if(gsm.getCurrentState() != GameStateManager.GAMEOVER){
+            isGameOver = false;
+        }
     }
 
     protected void paintComponent(Graphics g) {
@@ -101,4 +129,5 @@ public class GamePanel extends JPanel implements Runnable, KeyListener {
     public void keyReleased(KeyEvent key) {
         Keys.keySet(key.getKeyCode(), false);
     }
+
 }

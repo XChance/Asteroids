@@ -296,7 +296,7 @@ public class PlayState extends GameState {
             if(JukeBox.isPlaying("THRUST")){
                 JukeBox.stop("THRUST");
             }
-            gsm.setState(GameStateManager.GAMEOVER);
+            gsm.setState(GameStateManager.GAMEOVER, score);
         }
     }
 
@@ -338,6 +338,9 @@ public class PlayState extends GameState {
         }
         if(Keys.isPressed(Keys.SPACE)){
             player.shoot();
+        }
+        if(Keys.isPressed(Keys.ESCAPE)){
+            gsm.setPaused(true);
         }
     }
 

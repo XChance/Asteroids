@@ -27,6 +27,8 @@ public class GameStateManager {
         JukeBox.setVolume("EXPLOSION", -10);
         JukeBox.load("sounds/PLAYER_THRUST.wav", "THRUST");
         JukeBox.setVolume("THRUST", -15);
+        JukeBox.load("sounds/SELECT_SOUND.wav", "SELECT");
+        JukeBox.setVolume("SELECT", -20);
 
         paused = false;
         pauseState = new PauseState(this);
@@ -45,8 +47,15 @@ public class GameStateManager {
         }else if(i == PLAY){
             gameStates[i] = new PlayState(this);
             gameStates[i].init();
-        }else if(i == GAMEOVER){
-            gameStates[i] = new GameoverState(this);
+        }
+    }
+
+    public void setState(int i, int score) {
+        previousState = currentState;
+        unloadState(previousState);
+        currentState = i;
+        if(i == GAMEOVER){
+            gameStates[i] = new GameoverState(this, score);
             gameStates[i].init();
         }
     }
@@ -61,6 +70,7 @@ public class GameStateManager {
 
     public void draw(Graphics2D g){
         if(paused){
+            gameStates[currentState].draw(g);
             pauseState.draw(g);
         }else{
             gameStates[currentState].draw(g);
@@ -73,6 +83,14 @@ public class GameStateManager {
 
     public void setPaused(boolean b) {
         paused = b;
+    }
+
+    public int getCurrentState(){
+        return currentState;
+    }
+
+    public GameState currentGameState(int i){
+        return gameStates[i];
     }
 
 }

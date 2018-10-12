@@ -29,7 +29,7 @@ public class Saucer extends Entity {
 
         saucerImage = SpriteLoader.ENEMY_SAUCER;
 
-        tickCount = 60;
+        tickCount = 20;
         isAlive = true;
 
         width = 40;
@@ -82,11 +82,11 @@ public class Saucer extends Entity {
         int temp = rd.nextInt(5);
         if(tickCount % 80 == 0) {
             if (dir == 0) {
-                xVel = 12 * Math.cos(angle);
-                yVel = 12 * Math.sin(angle);
+                xVel = 10 * Math.cos(angle);
+                yVel = 10 * Math.sin(angle);
             } else {
-                xVel = -12 * Math.cos(angle);
-                yVel = 12 * Math.sin(angle);
+                xVel = -10 * Math.cos(angle);
+                yVel = 10 * Math.sin(angle);
             }
             //make a lil less accurate
             switch (temp){

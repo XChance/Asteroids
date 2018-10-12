@@ -29,7 +29,7 @@ public class Saucer extends Entity {
 
         saucerImage = SpriteLoader.ENEMY_SAUCER;
 
-        tickCount = 0;
+        tickCount = 60;
         isAlive = true;
 
         width = 40;
@@ -80,7 +80,7 @@ public class Saucer extends Entity {
     public void shoot(double angle, int dir){
         double xVel, yVel;
         int temp = rd.nextInt(5);
-        if(tickCount % 100 == 0) {
+        if(tickCount % 80 == 0) {
             if (dir == 0) {
                 xVel = 12 * Math.cos(angle);
                 yVel = 12 * Math.sin(angle);

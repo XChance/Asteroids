@@ -130,7 +130,9 @@ public class Player extends Entity {
     public void shoot(){
         if(bullets.size() <= 3) {
             bullets.add(new Bullet(this));
-            JukeBox.play("BULLET_SHOOT");
+            if(!JukeBox.isPlaying("BULLET_SHOOT")) {
+                JukeBox.play("BULLET_SHOOT");
+            }
         }
     }
 

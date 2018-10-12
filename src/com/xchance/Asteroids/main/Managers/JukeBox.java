@@ -1,7 +1,6 @@
 package com.xchance.Asteroids.main.Managers;
 
 import java.io.BufferedInputStream;
-import java.io.File;
 import java.io.InputStream;
 import java.util.HashMap;
 
@@ -28,9 +27,9 @@ public class JukeBox {
         if(clips.get(n) != null) return;
         Clip clip;
         try {
-            //InputStream in = JukeBox.class.getResourceAsStream(s);
-            //InputStream bin = new BufferedInputStream(in);
-            AudioInputStream ais = AudioSystem.getAudioInputStream(new File(s));
+            InputStream in = JukeBox.class.getClassLoader().getResourceAsStream(s);
+            InputStream bin = new BufferedInputStream(in);
+            AudioInputStream ais = AudioSystem.getAudioInputStream(bin);
             AudioFormat baseFormat = ais.getFormat();
             AudioFormat decodeFormat = new AudioFormat(
                     AudioFormat.Encoding.PCM_SIGNED,

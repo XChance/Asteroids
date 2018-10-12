@@ -19,13 +19,13 @@ public class GameStateManager {
 
     public GameStateManager(){
         JukeBox.init();
-        JukeBox.load("res/sounds/BULLET_SHOOT.wav", "BULLET_SHOOT");
+        JukeBox.load("sounds/BULLET_SHOOT.wav", "BULLET_SHOOT");
         JukeBox.setVolume("BULLET_SHOOT", -10);
-        JukeBox.load("res/sounds/ASTEROID_SHOT.wav", "ASTEROID_SHOT");
+        JukeBox.load("sounds/ASTEROID_SHOT.wav", "ASTEROID_SHOT");
         JukeBox.setVolume("ASTEROID_SHOT", -10);
-        JukeBox.load("res/sounds/EXPLOSION.wav", "EXPLOSION");
+        JukeBox.load("sounds/EXPLOSION.wav", "EXPLOSION");
         JukeBox.setVolume("EXPLOSION", -10);
-        JukeBox.load("res/sounds/PLAYER_THRUST.wav", "THRUST");
+        JukeBox.load("sounds/PLAYER_THRUST.wav", "THRUST");
         JukeBox.setVolume("THRUST", -15);
 
         paused = false;

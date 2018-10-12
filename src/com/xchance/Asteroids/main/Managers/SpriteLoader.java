@@ -3,31 +3,31 @@ package com.xchance.Asteroids.main.Managers;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
 
 //This class loads sprites from res folder
 //Static sprites that can be called anywhere
 public class SpriteLoader {
 
-    public static BufferedImage BACKGROUND = load("res/icons/BACKGROUND.png");
+    public static BufferedImage BACKGROUND = load("icons/BACKGROUND.png");
 
-    public static BufferedImage SHIP_DEFAULT = load("res/icons/SPACESHIP_DEFAULT.png");
-    public static BufferedImage SHIP_THRUST = load("res/icons/SPACESHIP_THRUST.png");
+    public static BufferedImage SHIP_DEFAULT = load("icons/SPACESHIP_DEFAULT.png");
+    public static BufferedImage SHIP_THRUST = load("icons/SPACESHIP_THRUST.png");
 
-    public static BufferedImage ENEMY_SAUCER = load("res/icons/ENEMY_SAUCER.png");
+    public static BufferedImage ENEMY_SAUCER = load("icons/ENEMY_SAUCER.png");
 
-    public static BufferedImage PLAYER_BULLET = load("res/icons/PLAYER_BULLET.png");
-    public static BufferedImage ENEMY_BULLET = load("res/icons/ENEMY_BULLET.png");
+    public static BufferedImage PLAYER_BULLET = load("icons/PLAYER_BULLET.png");
+    public static BufferedImage ENEMY_BULLET = load("icons/ENEMY_BULLET.png");
 
-    public static BufferedImage ASTEROID_MEDIUM = load("res/icons/ASTEROID_MEDIUM.png");
-    public static BufferedImage ASTEROID_SMALL = load("res/icons/ASTEROID_SMALL.png");
+    public static BufferedImage ASTEROID_MEDIUM = load("icons/ASTEROID_MEDIUM.png");
+    public static BufferedImage ASTEROID_SMALL = load("icons/ASTEROID_SMALL.png");
 
-    public static BufferedImage[][] font = load("res/fonts/font.gif", 8, 8);
+    public static BufferedImage[][] font = load("fonts/font.gif", 8, 8);
 
     //class for simple loading of images
     public static BufferedImage load(String s) {
         try {
-            BufferedImage temp = ImageIO.read(new FileInputStream(s));
+            //BufferedImage temp = ImageIO.read(new FileInputStream(s));
+            BufferedImage temp = ImageIO.read(SpriteLoader.class.getClassLoader().getResourceAsStream(s));
             return temp;
         }
         catch(Exception e) {
@@ -41,7 +41,7 @@ public class SpriteLoader {
     public static BufferedImage[][] load(String s, int w, int h) {
         BufferedImage[][] ret;
         try {
-            BufferedImage spritesheet = ImageIO.read(new FileInputStream(s));
+            BufferedImage spritesheet = ImageIO.read(SpriteLoader.class.getClassLoader().getResourceAsStream(s));
             int width = spritesheet.getWidth() / w;
             int height = spritesheet.getHeight() / h;
             ret = new BufferedImage[height][width];
